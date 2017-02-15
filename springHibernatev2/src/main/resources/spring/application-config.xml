@@ -17,7 +17,7 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/hibernateMVC" />
+		<property name="url" value="jdbc:mysql://localhost:3306/productdb" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>
@@ -31,8 +31,8 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>org.sistema.springmvc.forms.models.User</value>
-				<value>org.sistema.springmvc.forms.models.Task</value>
+				<value>org.sistema.springmvc.forms.models.ProductType</value>
+				<value>org.sistema.springmvc.forms.models.Product</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -50,11 +50,11 @@
 	</bean>
 
 
-	<bean id="taskDAO" class="org.sistema.springmvc.forms.dao.GenericDAO">
+	<bean id="productDAO" class="org.sistema.springmvc.forms.dao.ProductDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="userDAO" class="org.sistema.springmvc.forms.dao.UserDAO">
+	<bean id="productTypeDAO" class="org.sistema.springmvc.forms.dao.ProductTypeDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 

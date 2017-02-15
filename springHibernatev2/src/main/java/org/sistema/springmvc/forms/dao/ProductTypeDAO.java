@@ -7,7 +7,8 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.sistema.springmvc.forms.models.User;
+import org.sistema.springmvc.forms.models.Product;
+import org.sistema.springmvc.forms.models.ProductType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  */
 
-public class UserDAO extends GenericDAO<User> {
+public class ProductTypeDAO extends GenericDAO<ProductType> {
 
 
 		/**
@@ -28,18 +29,31 @@ public class UserDAO extends GenericDAO<User> {
 	 * @return List of products
 	 */
 	@Transactional(readOnly = true)
-	public List<User> selectByName(String name) {
+	public List<ProductType> selectByName(String name) {
 
-		List<User> products = null;
+		List<ProductType> products = null;
 
 			Query query = getSession()
-							.createQuery("from User u where u.login LIKE :login");
-		    query.setParameter("login", "%"+name+"%");
+							.createQuery("from producttype tp where tp.name LIKE :name");
+		    query.setParameter("name", "%"+name+"%");
 		    
 			// We get a generic object list
 			products = query.list();
 
 		return products;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<ProductType> selectProductTypes() {
+		
+		List<ProductType> productTypes = null;
+		
+		Query query = getSession().createQuery("FROM producttype");
+		
+		productTypes = query.list();
+		
+		return productTypes;
+		
 	}
 
 }

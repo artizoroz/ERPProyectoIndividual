@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Represents a Task.
@@ -14,20 +17,27 @@ import javax.persistence.ManyToOne;
  *
  */
 @Entity
-public class Task {
+public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Size(min=1, message="Name must have a value")
 	private String name;
+	
+	@Size(min=1, message="Description must have a value")
 	private String description;
+	
+	//@Size(min=1, message="Pvp must have a numeric value")
+	@Min(0)
+	private Double pvp;
 	@ManyToOne
-    @JoinColumn(name="iduser")
-	private User user;
+	private ProductType productType;
 	
 	/**
 	 * default constructor
 	 */
-	public Task () {
+	public Product () {
 		
 	}
 	
@@ -35,13 +45,14 @@ public class Task {
 	 * @param id
 	 * @param name
 	 * @param description
-	 * @param user
+	 * @param productType
 	 */
-	public Task(int id, String name, String description, User user) {
+	public Product(int id, String name, String description, Double pvp, ProductType productType) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.user = user;
+		this.pvp = pvp;
+		this.productType = productType;
 	}
 
 	/**
@@ -87,18 +98,34 @@ public class Task {
 	}
 
 	/**
-	 * @return the user
+	 * @return the productType
 	 */
-	public User getUser() {
-		return user;
+	public ProductType getProductType() {
+		return productType;
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param productType the productType to set
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setProductType(ProductType productType) {
+		this.productType = productType;
 	}
+
+	/**
+	 * @return the pvp
+	 */
+	public Double getPvp() {
+		return pvp;
+	}
+
+	/**
+	 * @param pvp the pvp to set
+	 */
+	public void setPvp(Double pvp) {
+		this.pvp = pvp;
+	}
+
+	
 
 	
 
