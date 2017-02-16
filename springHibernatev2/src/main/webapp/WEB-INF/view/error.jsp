@@ -25,7 +25,8 @@
 
 	<h1>Error</h1>
 
-	<div class="alert alert-success" role="alert">The following error ${error} arised when creating a new user</div>
+	<div class="alert alert-success" role="alert">The following error
+		${error} arised when creating a new user</div>
 
 	<p class="text-muted">&copy; 2015 Eugenia Pérez</p>
 
